@@ -1,3 +1,6 @@
+const chatbotServices = require("../services/chatbotServices");
+
+
 let getHomePage = (req, res) => {
     return res.send("Hello world!!!");
 }
@@ -62,6 +65,20 @@ let postWebHook = (req, res) => {
     // Returns a '404 Not Found' if event is not from a page subscription
     res.sendStatus(404);
   }
+}
+
+let handleMessage =  async (sender_psid, received_message) => {
+  let response;
+
+  // Check if the message contains text
+  if (received_message.text) {
+      // Create the payload for a basic text message
+      response = {
+          "text": `You sent the message: "${received_message.text}". Now send me an image!`
+      }
+  }
+
+  await chatbotServices.sendMessage(sender_psid, response);
 }
 
 module.exports = {
