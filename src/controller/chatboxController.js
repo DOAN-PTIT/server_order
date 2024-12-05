@@ -88,6 +88,7 @@ let handleMessage =  async (sender_psid, received_message) => {
 module.exports = {
     getHomePage: getHomePage,
     getWebHook: getWebHook,
-    postWebHook: postWebHook
+    postWebHook: postWebHook,
+    getDevPage: getDevPage
 }
 
