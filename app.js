@@ -5,7 +5,7 @@ const axios = require('axios');
 const helmet = require('helmet');
 const cors = require('cors');
 const configViewEngine = require('./src/config/viewEngine');
-const initWebRoutes = require('./src/views/web');
+const initWebRoutes = require('./src/routers/web');
 
 const app = express();
 const PORT = process.env.PORT || 3000;

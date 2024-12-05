@@ -5,6 +5,10 @@ let getHomePage = (req, res) => {
     return res.send("Hello world!!!");
 }
 
+let getDevPage = (req, res) => {
+    return res.send("Hello Dev!!!");
+}
+
 let getWebHook = (req, res) => {
     // Your verify token. Should be a random string.
   const VERIFY_TOKEN = process.env.VERIFY_TOKEN;
