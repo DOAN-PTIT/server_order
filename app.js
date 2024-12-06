@@ -17,10 +17,9 @@ configViewEngine(app);
 initWebRoutes(app)
 
 // Middleware bảo mật và cấu hình CORS
-app.use(helmet());
 app.use(cors());
-app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.listen(PORT, () => {
     console.log(`App is running at http://localhost:${PORT}`);
