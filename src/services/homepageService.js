@@ -1,50 +1,36 @@
 require("dotenv").config();
-const axios = require("axios");
+const axios = require("axios/dist/node/axios.cjs"); // node
 
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 
-let sendTypingOn = (sender_psid) => {
+let sendTypingOn = async (sender_psid) => {
   console.log("start send typing on");
-  return new Promise(async (resolve, reject) => {
-    try {
-      let request_body = {
-        recipient: {
-          id: sender_psid,
-        },
-        sender_action: "typing_on",
-      };
-
-      let url = `https://graph.facebook.com/v21.0/me/messages?access_token=${PAGE_ACCESS_TOKEN}`;
-      await axios
-        .post(url, request_body)
-        .then((res) => resolve("done!"))
-        .catch((err) => reject("Unable to send message:" + err));
-    } catch (e) {
-      reject(e);
-    }
-  });
+  let url = `https://graph.facebook.com/v21.0/me/messages?access_token=${PAGE_ACCESS_TOKEN}`;
+  let request_body = {
+    recipient: {
+      id: sender_psid,
+    },
+    sender_action: "typing_on",
+  };
+  return axios
+    .post(url, request_body)
+    .then((res) => console.log(res))
+    .catch((err) => console.log(err));
 };
 
-let markMessageRead = (sender_psid) => {
+let markMessageRead = async (sender_psid) => {
   console.log("start mark message read");
-  return new Promise(async (resolve, reject) => {
-    try {
-      let request_body = {
-        recipient: {
-          id: sender_psid,
-        },
-        sender_action: "mark_seen",
-      };
+  let url = `https://graph.facebook.com/v21.0/me/messages?access_token=${PAGE_ACCESS_TOKEN}`;
 
-      let url = `https://graph.facebook.com/v21.0/me/messages?access_token=${PAGE_ACCESS_TOKEN}`;
-      axios
-        .post(url, request_body)
-        .then((res) => resolve("done!"))
-        .catch((err) => reject("Unable to send message:" + err));
-    } catch (e) {
-      reject(e);
-    }
-  });
+  return axios
+    .post(url, {
+      recipient: {
+        id: sender_psid,
+      },
+      sender_action: "mark_seen",
+    })
+    .then((res) => console.log(res))
+    .catch((err) => console.log(err));
 };
 
 module.exports = {
