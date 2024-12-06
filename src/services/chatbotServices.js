@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-const axios = require('axios/dist/node/axios.cjs'); // node
+const axios = require('axios'); // node
 const homepageService = require("./homepageService");
 
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
