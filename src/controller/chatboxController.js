@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const chatbotServices = require("../services/chatbotServices");
 
 let getHomePage = (req, res) => {

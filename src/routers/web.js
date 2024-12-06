@@ -9,7 +9,9 @@ let initWebRoutes = (app) => {
     router.get("/dev", chatboxController.getDevPage);
 
     router.get("/webhook", chatboxController.getWebHook);
-    router.post("/webhook", chatboxController.postWebHook);
+    router.post("/webhook", (req, res) => {
+        return chatboxController.postWebHook(req, res);
+    });
 
     return app.use("/", router);
 }
