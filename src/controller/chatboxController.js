@@ -34,36 +34,37 @@ let getWebHook = (req, res) => {
 let postWebHook = (req, res) => {
   console.log("postWebHook");
   let body = req.body;
-  console.log(req);
-  console.log(res);
-  console.log(body);
-
   // Checks if this is an event from a page subscription
-  if (body.object === "page") {
-    // Iterates over each entry - there may be multiple if batched
-    body.entry.forEach(function (entry) {
-      // Gets the body of the webhook event
-      let webhookEvent = entry.messaging[0];
-      console.log(webhookEvent);
+  if (body) {
+    if (body.object === "page") {
+      // Iterates over each entry - there may be multiple if batched
+      body.entry.forEach(function (entry) {
+        // Gets the body of the webhook event
+        let webhookEvent = entry.messaging[0];
+        console.log(webhookEvent);
 
-      // Get the sender PSID
-      let senderPsid = webhookEvent.sender.id;
-      console.log("Sender PSID: " + senderPsid);
+        // Get the sender PSID
+        let senderPsid = webhookEvent.sender.id;
+        console.log("Sender PSID: " + senderPsid);
 
-      // Check if the event is a message or postback and
-      // pass the event to the appropriate handler function
-      if (webhookEvent.message) {
-        console.log("message");
-        handleMessage(senderPsid, webhookEvent.message);
-      } else if (webhookEvent.postback) {
-        handlePostback(senderPsid, webhookEvent.postback);
-      }
-    });
+        // Check if the event is a message or postback and
+        // pass the event to the appropriate handler function
+        if (webhookEvent.message) {
+          console.log("message");
+          handleMessage(senderPsid, webhookEvent.message);
+        } else if (webhookEvent.postback) {
+          handlePostback(senderPsid, webhookEvent.postback);
+        }
+      });
 
-    // Returns a '200 OK' response to all requests
-    res.status(200).send("EVENT_RECEIVED");
+      // Returns a '200 OK' response to all requests
+      res.status(200).send("EVENT_RECEIVED");
+    } else {
+      // Returns a '404 Not Found' if event is not from a page subscription
+      res.sendStatus(404);
+    }
   } else {
-    // Returns a '404 Not Found' if event is not from a page subscription
+    console.log("body is empty");
     res.sendStatus(404);
   }
 };
