@@ -64,7 +64,7 @@ let postWebHook = (req, res) => {
       res.sendStatus(404);
     }
   } else {
-    console.log("body is empty");
+    console.log("body is empty hahahah");
     res.sendStatus(404);
   }
 };
