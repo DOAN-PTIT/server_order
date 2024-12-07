@@ -59,7 +59,7 @@ app.post("/webhook", (req, res) => {
       res.sendStatus(404);
     }
   } else {
-    console.log("body is empty hahahah");
+    console.log("empty");
     res.sendStatus(404);
   }
 });
