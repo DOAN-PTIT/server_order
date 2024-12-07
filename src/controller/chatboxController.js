@@ -12,7 +12,7 @@ let getDevPage = (req, res) => {
 
 let postHomePage = (req, res) => {
   console.log("postHomePage");
-  console.log(req.body);
+  console.log(req);
   return res.send("Hello world!!!");
 }
 
