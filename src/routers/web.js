@@ -10,8 +10,6 @@ let initWebRoutes = (app) => {
 
     router.get("/webhook", chatboxController.getWebHook);
     router.post("/webhook", (req, res) => {
-        console.log(res.json(req.body));
-        console.log(req.body + " " + req.url);
         return chatboxController.postWebHook(req, res);
     });
 
