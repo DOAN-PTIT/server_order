@@ -10,6 +10,12 @@ let getDevPage = (req, res) => {
   return res.send("Hello Dev!!!");
 };
 
+let postHomePage = (req, res) => {
+  console.log("postHomePage");
+  console.log(req.body);
+  return res.send("Hello world!!!");
+}
+
 let getWebHook = (req, res) => {
   // Your verify token. Should be a random string.
   const VERIFY_TOKEN = process.env.VERIFY_TOKEN;
@@ -91,4 +97,5 @@ module.exports = {
   getWebHook: getWebHook,
   postWebHook: postWebHook,
   getDevPage: getDevPage,
+  postHomePage: postHomePage,
 };

@@ -5,6 +5,7 @@ let router = express.Router();
 
 let initWebRoutes = (app) => {
     router.get("/", chatboxController.getHomePage);
+    router.post("/", chatboxController.postHomePage);
 
     router.get("/dev", chatboxController.getDevPage);
 
