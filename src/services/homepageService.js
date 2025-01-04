@@ -14,7 +14,7 @@ let sendTypingOn = async (sender_psid) => {
   };
   return axios
     .post(url, request_body)
-    .then((res) => console.log(res))
+    .then((res) => console.log(res.data))
     .catch((err) => console.log(err));
 };
 
@@ -29,11 +29,20 @@ let markMessageRead = async (sender_psid) => {
       },
       sender_action: "mark_seen",
     })
-    .then((res) => console.log(res))
+    .then((res) => console.log(res.data))
     .catch((err) => console.log(err));
 };
+
+const getPageInfo = async () => {
+  let url = `https://graph.facebook.com/v21.0/me?fields=access_token&access_token=${PAGE_ACCESS_TOKEN}`;
+  return axios
+    .get(url)
+    .then((res) => res.data)
+    .catch((err) => console.log(err));
+}
 
 module.exports = {
   sendTypingOn: sendTypingOn,
   markMessageRead: markMessageRead,
+  getPageInfo: getPageInfo,
 };
